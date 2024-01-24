@@ -1,0 +1,38 @@
+#root {
+  /* max-width: 1280px; */
+  display: flex;
+  flex-direction: column;
+  /* margin: 0 auto;
+  padding: 2rem;
+  text-align: center; */
+}
+
+.header {
+  display: flex;
+  background-color: lightblue;
+  justify-content: center;
+ 
+  /* margin-bottom: 900px; */
+  
+}
+
+.website-name {
+  font-size: 52px;
+  
+}
+
+.display {
+  display: flex;
+}
+
+.melody-display {
+  background-color: burlywood;
+  margin-left: 50px;
+  padding: 200px 200px 200px 200px;
+}
+
+.harmony-display {
+  background-color: lightpink;
+  margin-left: 50px;
+  padding: 200px 200px 200px 200px;
+}
