@@ -23,6 +23,7 @@
 
 .display {
   display: flex;
+  margin-top: 20px;
 }
 
 .melody-display {
@@ -35,4 +36,34 @@
   background-color: lightpink;
   margin-left: 50px;
   padding: 200px 200px 200px 200px;
+}
+
+.harmony-settings {
+  margin-left: 20px;
+}
+
+.interval-settings {
+  background-color: lightskyblue;
+  padding: 0 70px 150px 80px;
+  font-weight: bold;
+}
+
+
+.chord-note-settings {
+  background-color: lightslategrey;
+  padding: 0 70px 150px 80px;
+  font-weight: bold;
+}
+
+.control-section {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  background-color: khaki;
+}
+
+.music-components {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
