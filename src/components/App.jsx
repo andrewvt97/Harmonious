@@ -6,12 +6,13 @@ import Melody from './Melody';
 function App() {
 
   const [melody, setMelody] = useState([]);
+
   const handleNoteClick = (note) => {
-    // Update melody state by appending the new note
-    setMelody((prevMelody) => [...prevMelody, note]);
+    // Update melody state by adding a new array representing the note and its value
+    setMelody((prevMelody) => [...prevMelody, [note, 0]]);
   };
   
-  console.log(melody);
+  console.log("Melody:", JSON.stringify(melody));
   return (
     
       <>
