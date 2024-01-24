@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 
-function NoteButton({text = "randomNote", color = "white", backgroundColor = "lightskyblue", fontSize = 14, onClick = () => {}}) {
+function Button({text = "randomNote", color = "white", backgroundColor = "lightskyblue", fontSize = 14, onClick = () => {}}) {
     const buttonStyle = {
         color: color,
         fontSize: fontSize + "px",
@@ -22,4 +22,4 @@ function NoteButton({text = "randomNote", color = "white", backgroundColor = "li
 }
 
 
-export default NoteButton;
+export default Button;

@@ -67,3 +67,30 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.note-type-container { /* This contains the section with the note buttons */
+  display: flex;
+  flex-direction: column;
+}
+
+.octave-range { /* contains line showing range of the octave */
+      
+      height: 2px;
+      background-color: #000000;
+      width: 80px;
+      
+}
+
+.octave-line-display {
+  display: flex;
+}
+
+.octave-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key-buttons {
+  display: flex;
+  justify-content: space-between;
+}
