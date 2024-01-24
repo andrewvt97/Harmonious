@@ -4,6 +4,8 @@ import NoteButton from './NoteButton';
 import Melody from './Melody';
 
 function App() {
+  
+  // I understand now! Use the parent component to manage the state variables and pass them down as props to children components
 
   const [melody, setMelody] = useState([]);
 
@@ -21,7 +23,7 @@ function App() {
           <p className='website-name'> Harmonious</p>
         </div>
         <div className='display'>
-          <Melody></Melody>
+          <Melody melody = {melody}></Melody>
           <p className='melody-display'> La la la this is the melody</p>
           <p className='harmony-display'> lo lo lo this is the harmony</p>
           <div className='harmony-settings'> 
@@ -38,16 +40,16 @@ function App() {
             <div className='note-buttons'>
               <p> Notes </p>
               <NoteButton text = {"C"} onClick={() => handleNoteClick("C")}></NoteButton>
-              <NoteButton text = {"C#/Db"}></NoteButton>
-              <NoteButton text = {"D"}></NoteButton>
-              <NoteButton text = {"D#/Eb"}></NoteButton>
-              <NoteButton text = {"F"}></NoteButton>
-              <NoteButton text = {"F#/Gb"}></NoteButton>
-              <NoteButton text = {"G"}></NoteButton>
-              <NoteButton text = {"G#/Ab"}></NoteButton>
-              <NoteButton text = {"A"}></NoteButton>
-              <NoteButton text = {"A#/Bb"}></NoteButton>
-              <NoteButton text = {"B"}></NoteButton>
+              <NoteButton text = {"C#/Db"} onClick={() => handleNoteClick("C#/Db")}></NoteButton>
+              <NoteButton text = {"D"} onClick={() => handleNoteClick("D")}></NoteButton>
+              <NoteButton text = {"D#/Eb"}onClick={() => handleNoteClick("D#/Eb")}></NoteButton>
+              <NoteButton text = {"F"} onClick={() => handleNoteClick("F")}></NoteButton>
+              <NoteButton text = {"F#/Gb"} onClick={() => handleNoteClick("F#/Gb")}></NoteButton>
+              <NoteButton text = {"G"} onClick={() => handleNoteClick("G")}></NoteButton>
+              <NoteButton text = {"G#/Ab"} onClick={() => handleNoteClick("G#/Ab")}></NoteButton>
+              <NoteButton text = {"A"} onClick={() => handleNoteClick("A")}></NoteButton>
+              <NoteButton text = {"A#/Bb"} onClick={() => handleNoteClick("A#/Bb")}></NoteButton>
+              <NoteButton text = {"B"} onClick={() => handleNoteClick("B")}></NoteButton>
 
             </div>
             <div className='chord-buttons'>
