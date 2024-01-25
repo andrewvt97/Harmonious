@@ -18,9 +18,16 @@ function App() {
   const [octave, setOctave] = useState(4);
   const [mode, setMode] = useState("Play");
 
+  const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1);
+
     // constant non-state variables
   const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"];
     // major key - 2 whole steps 1 half step 3 whole steps
+  // let selectedMelodyNote = -1;
+  // const updateSelectedNote = (newNote) => {
+  //   selectedMelodyNote = newNote;
+  //   // console.log(selectedMelodyNote);
+  // };
 
   const major = [2, 2, 1, 2, 2, 2];
   const current_key_scale = [];
@@ -39,8 +46,8 @@ function App() {
     chords.push({"index":current_key_scale[i]["index"], "chord" :current_key_scale[i]["note"] + chord_type[i+1]});
   }
 
-  console.log(current_key_scale);
-  console.log(chords);
+  // console.log(current_key_scale);
+  // console.log(chords);
 
 
   const handleNoteTypeClick = (type) => {
@@ -89,7 +96,7 @@ function App() {
         <div className='display'>
         <div className='melody-display'> 
           <p> Melody</p>
-          <Melody className='melody-display' melody = {melody}></Melody>
+          <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote}></Melody>
         </div> 
         <div className='harmony-display'> 
           <p> Harmony</p>
@@ -109,11 +116,12 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} mode = {mode}></MusicButtons>
+              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} mode = {mode} 
+              selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
-              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} mode = {mode}></MusicButtons>
+              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} mode = {mode} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>

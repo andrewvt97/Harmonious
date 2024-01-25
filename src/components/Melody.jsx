@@ -3,9 +3,14 @@ import App from "./App";
 import '../styles/App.css'
 import Button from "./Button";
 
-function Melody({melody = []}) {
+function Melody({melody = [], mode, selectedNoteFunction}) {
 
-    const handleMelodyClick = () => {};
+    const handleMelodyClick = (MelodyIndex) => {
+        if (mode != "Attach Chords")
+            return;
+        console.log(MelodyIndex);
+        selectedNoteFunction(MelodyIndex);
+    };
 
     return <>
         {/* <ul>
@@ -17,9 +22,9 @@ function Melody({melody = []}) {
       {melody.map((note, index) => (
             
             note["chord"] === 0 ? (
-            <Button key={index} text={note["note"]} onClick={() => handleMelodyClick()} />
+            <Button key={index} text={note["note"]} onClick={() => handleMelodyClick(index)} />
             ): (
-            <Button key={index} text={note["note"] + note["chord"]} onClick={() => handleMelodyClick()} />
+            <Button key={index} text={note["note"] + note["chord"]} onClick={() => handleMelodyClick(index)} />
             )
             
         ))}
