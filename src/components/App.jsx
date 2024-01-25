@@ -2,12 +2,14 @@ import { useState } from 'react'
 import '../styles/App.css'
 import Button from './Button';
 import Melody from './Melody';
+import MusicButtons from './MusicButtons';
 
 function App() {
   
 
 
   // I understand now! Use the parent component to manage the state variables and pass them down as props to children components
+  // I learned another thing. It is common to pass both state variable and state setter function. This is called lifting state.
 
   // state variables
   const [melody, setMelody] = useState([]);
@@ -38,11 +40,6 @@ function App() {
   console.log(current_key_scale);
   console.log(chords);
 
-  const handleNoteClick = (note) => {
-    // Update melody state by adding a new array representing the note and its value
-    // setMelody((prevMelody) => [...prevMelody, [note, 0]]);
-    setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "key": "C", "range": 4}]);
-  };
 
   const handleNoteTypeClick = (type) => {
     setNoteType(type);
@@ -104,21 +101,11 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <Button text = {"C"} onClick={() => handleNoteClick("C")}></Button>
-              <Button text = {"C#/Db"} onClick={() => handleNoteClick("C#/Db")}></Button>
-              <Button text = {"D"} onClick={() => handleNoteClick("D")}></Button>
-              <Button text = {"D#/Eb"}onClick={() => handleNoteClick("D#/Eb")}></Button>
-              <Button text = {"F"} onClick={() => handleNoteClick("F")}></Button>
-              <Button text = {"F#/Gb"} onClick={() => handleNoteClick("F#/Gb")}></Button>
-              <Button text = {"G"} onClick={() => handleNoteClick("G")}></Button>
-              <Button text = {"G#/Ab"} onClick={() => handleNoteClick("G#/Ab")}></Button>
-              <Button text = {"A"} onClick={() => handleNoteClick("A")}></Button>
-              <Button text = {"A#/Bb"} onClick={() => handleNoteClick("A#/Bb")}></Button>
-              <Button text = {"B"} onClick={() => handleNoteClick("B")}></Button>
-
+              <MusicButtons currentScale={current_key_scale} type = "note" melody={melody} setMelody={setMelody}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
+              <MusicButtons currentScale={chords}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
