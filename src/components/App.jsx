@@ -72,12 +72,13 @@ function App() {
   };
 
   const handleModeChange = (mode) => {
-      setMode("mode")
+      setMode(mode);
   };
   
   console.log("Melody:", JSON.stringify(melody));
   console.log("Type:", noteType);
   console.log("Key:", key);
+  console.log("Mode:", mode);
   return (
     
       <>
@@ -108,11 +109,11 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody}></MusicButtons>
+              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} mode = {mode}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
-              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody}></MusicButtons>
+              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} mode = {mode}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
@@ -150,11 +151,11 @@ function App() {
           <div className='functionality-buttons'>
             <p> Mode</p>
             <div className='mode-buttons'>
-              <Button text="Play"></Button>
-              <Button text="Add Notes"></Button>
-              <Button text="Remove Notes"></Button>
-              <Button text="Attach Chord"></Button>
-              <Button text="Remove Chord"></Button>
+              <Button text="Play" onClick={() => handleModeChange("Play")}></Button>
+              <Button text="Add Notes" onClick={() => handleModeChange("Add Notes")}></Button>
+              <Button text="Remove Notes" onClick={() => handleModeChange("Remove Notes")}></Button>
+              <Button text="Attach Chord" onClick={() => handleModeChange("Attach Chords")}></Button>
+              <Button text="Remove Chord" onClick={() => handleModeChange("Remove Chords")}></Button>
             </div>
           </div>
           

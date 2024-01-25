@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-function MusicButtons({currentScale = [], type = "note", setMelody}) {
+function MusicButtons({currentScale = [], type = "note", setMelody, mode}) {
     console.log(type);
     // needs access to melody and setMelody
 
@@ -18,9 +18,12 @@ function MusicButtons({currentScale = [], type = "note", setMelody}) {
         <>
           {currentScale.map((music_item, index) => {
             if (type === "note") {
-              return (
-                <Button key={index} text={music_item["note"]} onClick={() => handleNoteClick(music_item["note"], music_item["index"])} />
-              );
+                if (mode == "Add Notes"){
+                    return (<Button key={index} text={music_item["note"]} onClick={() => handleNoteClick(music_item["note"], music_item["index"])} />);
+                }
+                else {
+              return (<Button key={index} text={music_item["note"]} onClick={() => {}} />);
+                }
             } else {
               return (
                 <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], music_item["index"])} />
