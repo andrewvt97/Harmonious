@@ -23,18 +23,19 @@ function App() {
 
   const major = [2, 2, 1, 2, 2, 2];
   const current_key_scale = [];
-  current_key_scale.push(notes[key]);
+  current_key_scale.push({"index":key, "note": notes[key]}); // add object with index to transpose easily
   let note_index = key;
   for (let i = 0; i < major.length; i++) {
     note_index = (note_index + major[i]) % 12;
-    current_key_scale.push(notes[note_index])
+    current_key_scale.push({"index":note_index, "note":notes[note_index]})
   }
 
   // major key Cmaj Dm Em Fmaj G7 Am Bdim
   const chord_type = {1: "maj", 2: "m", 3: "m", 4: "maj", 5: "7", 6: "m", 7: "dim"};
   const chords = [];
   for (let i = 0; i < current_key_scale.length; i++) {
-    chords.push(current_key_scale[i] + chord_type[i+1]);
+    // console.log(current_key_scale["index"]);
+    chords.push({"index":current_key_scale[i]["index"], "chord" :current_key_scale[i]["note"] + chord_type[i+1]});
   }
 
   console.log(current_key_scale);

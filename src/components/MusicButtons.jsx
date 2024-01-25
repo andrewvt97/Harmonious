@@ -1,21 +1,29 @@
 import React from "react";
 import Button from "./Button";
 
-function MusicButtons({currentScale = [], type, melody, setMelody}) {
+function MusicButtons({currentScale = [], type = "note", melody, setMelody}) {
     
     // needs access to melody and setMelody
 
-    const handleNoteClick = (note) => {
+    const handleNoteClick = (note, index) => {
         // Update melody state by adding a new array representing the note and its value
         // setMelody((prevMelody) => [...prevMelody, [note, 0]]);
-        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "key": "C", "range": 4}]);
+        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "key": "C", "range": 4, "index": index}]);
       };
+
+    const handleChordClick = (chord, index) => {};
    
    
     return (
         <>
-        {currentScale.map((note, index) => (
-        <Button key={index} text={note} onClick={() => handleNoteClick(note)} />
+        {currentScale.map((music_item, index) => (
+              
+            type === "note" ? (
+            <Button key={index} text={music_item["note"]} onClick={() => handleNoteClick(music_item["note"], music_item["index"])} />
+            ): (
+            <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], music_item["index"])} />
+            )
+        
         ))}
         </>
        
