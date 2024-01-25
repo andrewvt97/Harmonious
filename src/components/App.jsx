@@ -60,6 +60,7 @@ function App() {
   const handleKeyChange = (button) => {
       if (button === ">"){
         setKey((key + 1) % 12) // 12 represents the amount of notes
+
       }
       else{
         if (key !== 0)
@@ -102,11 +103,11 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <MusicButtons currentScale={current_key_scale} type = "note" melody={melody} setMelody={setMelody}></MusicButtons>
+              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
-              <MusicButtons currentScale={chords}></MusicButtons>
+              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
