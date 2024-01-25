@@ -5,9 +5,7 @@ import Melody from './Melody';
 
 function App() {
   
-  // constant non-state variables
-  const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"]
-  // major key - 2 whole steps 1 half step 3 whole steps
+
 
   // I understand now! Use the parent component to manage the state variables and pass them down as props to children components
 
@@ -17,6 +15,28 @@ function App() {
   const [noteType, setNoteType] = useState("Quarter");
   const [octave, setOctave] = useState(4);
 
+    // constant non-state variables
+  const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"];
+    // major key - 2 whole steps 1 half step 3 whole steps
+
+  const major = [2, 2, 1, 2, 2, 2];
+  const current_key_scale = [];
+  current_key_scale.push(notes[key]);
+  let note_index = key;
+  for (let i = 0; i < major.length; i++) {
+    note_index = (note_index + major[i]) % 12;
+    current_key_scale.push(notes[note_index])
+  }
+
+  // major key Cmaj Dm Em Fmaj G7 Am Bdim
+  const chord_type = {1: "maj", 2: "m", 3: "m", 4: "maj", 5: "7", 6: "m", 7: "dim"};
+  const chords = [];
+  for (let i = 0; i < current_key_scale.length; i++) {
+    chords.push(current_key_scale[i] + chord_type[i+1]);
+  }
+
+  console.log(current_key_scale);
+  console.log(chords);
 
   const handleNoteClick = (note) => {
     // Update melody state by adding a new array representing the note and its value
