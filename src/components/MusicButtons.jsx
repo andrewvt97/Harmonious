@@ -16,20 +16,19 @@ function MusicButtons({currentScale = [], type = "note", setMelody}) {
    
     return (
         <>
-        {currentScale.map((music_item, index) => (
-            
-            type === "note" ? (
-            <Button key={index} text={music_item["note"]} onClick={() => handleNoteClick(music_item["note"], music_item["index"])} />
-            ): (
-            <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], music_item["index"])} />
-            )
-            
-        ))}
+          {currentScale.map((music_item, index) => {
+            if (type === "note") {
+              return (
+                <Button key={index} text={music_item["note"]} onClick={() => handleNoteClick(music_item["note"], music_item["index"])} />
+              );
+            } else {
+              return (
+                <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], music_item["index"])} />
+              );
+            }
+          })}
         </>
-       
-        
-    );
-    
+      );
 
     
 }

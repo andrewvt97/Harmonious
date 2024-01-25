@@ -16,6 +16,7 @@ function App() {
   const [key, setKey] = useState(0);
   const [noteType, setNoteType] = useState("Quarter");
   const [octave, setOctave] = useState(4);
+  const [mode, setMode] = useState("Play");
 
     // constant non-state variables
   const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -68,6 +69,10 @@ function App() {
         else
           setKey(11) // 12 represents the amount of notes so len - 1 = 11
       }
+  };
+
+  const handleModeChange = (mode) => {
+      setMode("mode")
   };
   
   console.log("Melody:", JSON.stringify(melody));
@@ -144,6 +149,13 @@ function App() {
           </div>
           <div className='functionality-buttons'>
             <p> Mode</p>
+            <div className='mode-buttons'>
+              <Button text="Play"></Button>
+              <Button text="Add Notes"></Button>
+              <Button text="Remove Notes"></Button>
+              <Button text="Attach Chord"></Button>
+              <Button text="Remove Chord"></Button>
+            </div>
           </div>
           
         </div>
