@@ -24,7 +24,8 @@ function Melody({melody = [], mode, selectedNoteFunction}) {
             note["chord"] === 0 ? (
             <Button key={index} text={note["note"]} onClick={() => handleMelodyClick(index)} />
             ): (
-            <Button key={index} text={note["note"] + note["chord"]} onClick={() => handleMelodyClick(index)} />
+            // <Button key={index} text={note["note"] + note["chord"]} onClick={() => handleMelodyClick(index)} />
+            <Button key={index} text={`${note["note"]}\n\n${note["chord"]}`} onClick={() => handleMelodyClick(index)} />
             )
             
         ))}

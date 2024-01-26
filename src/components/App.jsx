@@ -116,12 +116,13 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} mode = {mode} 
+              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
               selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
-              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} mode = {mode} selectedNote={selectedMelodyNote}></MusicButtons>
+              <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
+              selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
