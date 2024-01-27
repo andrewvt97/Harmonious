@@ -1,13 +1,31 @@
 import { useState } from 'react'
+import React, { useEffect } from 'react';
 import '../styles/App.css'
 import Button from './Button';
 import Melody from './Melody';
 import MusicButtons from './MusicButtons';
 
+import * as Tone from 'tone';
+
 function App() {
+
+  // need this to set up audio at the start
+  useEffect(() => {
+    const handleBodyClick = async () => {
+      await Tone.start();
+      console.log('audio is ready');
+    };
+
+    document.body.addEventListener('click', handleBodyClick, { once: true });
+
+    // Cleanup: Remove the event listener when the component unmounts
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
   
-
-
+  
   // I understand now! Use the parent component to manage the state variables and pass them down as props to children components
   // I learned another thing. It is common to pass both state variable and state setter function. This is called lifting state.
 
@@ -82,10 +100,10 @@ function App() {
       setMode(mode);
   };
   
-  console.log("Melody:", JSON.stringify(melody));
-  console.log("Type:", noteType);
-  console.log("Key:", key);
-  console.log("Mode:", mode);
+  // console.log("Melody:", JSON.stringify(melody));
+  // console.log("Type:", noteType);
+  // console.log("Key:", key);
+  // console.log("Mode:", mode);
   return (
     
       <>
