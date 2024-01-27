@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import '../styles/App.css'
 import Button from './Button';
 import Melody from './Melody';
+import Harmony from './Harmony';
 import MusicButtons from './MusicButtons';
 
 import * as Tone from 'tone';
@@ -100,7 +101,7 @@ function App() {
       setMode(mode);
   };
   
-  // console.log("Melody:", JSON.stringify(melody));
+  console.log("Melody:", JSON.stringify(melody));
   // console.log("Type:", noteType);
   // console.log("Key:", key);
   // console.log("Mode:", mode);
@@ -118,7 +119,7 @@ function App() {
         </div> 
         <div className='harmony-display'> 
           <p> Harmony</p>
-          <p> lo lo lo this is the harmony</p>
+          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} ></Harmony>
         </div> 
 
           <div className='harmony-settings'> 
