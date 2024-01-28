@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-function Harmony({melody = [], scale = []}){
+function Harmony({melody = [], scale = [], harmonyType = "High"}){
 
     const convertToHarmony = (noteDetails) => { 
-        let index = noteDetails["scalePos"] + 2;
-        noteDetails["note"] = scale[index % 7]["note"];
-        if (index > 6){
-            noteDetails["range"] += 1;
+        let index = 0;
+        if (harmonyType === "High"){
+            index = noteDetails["scalePos"] + 2;
+            if (index > 6)
+                noteDetails["range"] += 1;
+            noteDetails["note"] = scale[index % 7]["note"];
+            noteDetails["scalePos"] = index % 7;
         }
-        noteDetails["scalePos"] = index % 7;
+        else{
+            index = noteDetails["scalePos"] - 2;
+            if (index < 0)
+                noteDetails["range"] -= 1;
+            noteDetails["note"] = scale[(index + 7) % 7]["note"];
+            noteDetails["scalePos"] = (index + 7) % 7;
+        }
+        
+    
+        
         // Note: NEVER CHANGED INDEX BUT IS THAT IMPORTANT?
 
         return noteDetails;

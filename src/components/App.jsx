@@ -36,6 +36,8 @@ function App() {
   const [noteType, setNoteType] = useState("Quarter");
   const [octave, setOctave] = useState(4);
   const [mode, setMode] = useState("Play");
+  const [harmonyOctave, setHarmonyOctave] = useState("Normal");
+  const [harmonyType, setHarmonyType] = useState("High");
 
   const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1);
 
@@ -100,6 +102,14 @@ function App() {
   const handleModeChange = (mode) => {
       setMode(mode);
   };
+
+  const handleHarmonyOctaveChange = (octave) => {
+      setHarmonyOctave(octave);
+  };
+
+  const handleHarmonyTypeChange = (type) => {
+    setHarmonyType(type);
+  };
   
   console.log("Melody:", JSON.stringify(melody));
   // console.log("Type:", noteType);
@@ -110,7 +120,7 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> Harmonious</p>
+          <p className='website-name'> Dr. Cheesey's Thanksgiving Special</p>
         </div>
         <div className='display'>
         <div className='melody-display'> 
@@ -119,15 +129,24 @@ function App() {
         </div> 
         <div className='harmony-display'> 
           <p> Harmony</p>
-          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} ></Harmony>
+          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType}></Harmony>
         </div> 
 
           <div className='harmony-settings'> 
-            <div className='interval-settings'>
-                <p> Interval</p>
+            <div className='octave-settings'>
+                <p> Harmony Octave</p>
+                <div className = "harmony-octave-buttons"> 
+                  <Button text="Normal" onClick={() => handleHarmonyOctaveChange("Normal")}></Button>
+                  <Button text="High" onClick={() => handleHarmonyOctaveChange("High")}></Button>
+                  <Button text="Low" onClick={() => handleHarmonyOctaveChange("Low")}></Button>
+                </div>
             </div>
             <div className='chord-note-settings'>
-              <p> Chord Note</p>
+              <p> Harmony Type</p>
+              <div className = "harmony-type-buttons"> 
+                  <Button text="High" onClick={() => handleHarmonyTypeChange("High")}></Button>
+                  <Button text="Low" onClick={() => handleHarmonyTypeChange("Low")}></Button>
+              </div>
             </div>
           </div>
         </div>
@@ -194,4 +213,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
