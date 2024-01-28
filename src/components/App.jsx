@@ -129,7 +129,7 @@ function App() {
         </div> 
         <div className='harmony-display'> 
           <p> Harmony</p>
-          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType}></Harmony>
+          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType} harmonyOctave={harmonyOctave}></Harmony>
         </div> 
 
           <div className='harmony-settings'> 

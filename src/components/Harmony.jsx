@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-function Harmony({melody = [], scale = [], harmonyType = "High"}){
+function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave = "Normal"}){
 
     const convertToHarmony = (noteDetails) => { 
         let index = 0;
@@ -19,7 +19,10 @@ function Harmony({melody = [], scale = [], harmonyType = "High"}){
             noteDetails["note"] = scale[(index + 7) % 7]["note"];
             noteDetails["scalePos"] = (index + 7) % 7;
         }
-        
+        if (harmonyOctave === "High")
+            noteDetails["range"] += 1;
+        else if (harmonyOctave === "Low")
+            noteDetails["range"] -= 1;
     
         
         // Note: NEVER CHANGED INDEX BUT IS THAT IMPORTANT?
