@@ -66,6 +66,8 @@ function App() {
     // console.log(current_key_scale["index"]);
     chords.push({"index":current_key_scale[i]["index"], "chord" :current_key_scale[i]["note"] + chord_type[i+1]});
   }
+  // console.log(current_key_scale);
+  // console.log(chords);
 
   // console.log(current_key_scale);
   // console.log(chords);

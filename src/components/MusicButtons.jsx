@@ -41,12 +41,13 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
             return
         // Update melody state by adding a new array representing the note and its value
         // setMelody((prevMelody) => [...prevMelody, [note, 0]]);
-        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "key": songKey, "range": range, "index": index, "scalePos": scalePosition}]);
+        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "chordIndex": 0, "key": songKey, "range": range, "index": index, "scalePos": scalePosition}]);
       };
 
-    const handleChordClick = (chord, index) => { // index represents note where we want to add chord
+    const handleChordClick = (chord, index, chordPos) => { // index represents note where we want to add chord
         if (mode = "Attach Chords"){
-            setMelody(prevMelody => prevMelody.map((note, i) => (i === index ? { ...note, chord: chord } : note)));
+            console.log(chordPos);
+            setMelody(prevMelody => prevMelody.map((note, i) => (i === index ? { ...note, chord: chord, chordIndex: chordPos } : note)));
         }
     };
    
@@ -63,7 +64,7 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
                 }
             } else {
               return (
-                <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], selectedNote)} />
+                <Button key={index} text={music_item["chord"]} onClick={() => handleChordClick(music_item["chord"], selectedNote, index)} />
               );
             }
           })}
