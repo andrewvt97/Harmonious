@@ -33,7 +33,7 @@ function App() {
   // state variables
   const [melody, setMelody] = useState([]);
   const [key, setKey] = useState(0);
-  const [noteType, setNoteType] = useState("Quarter");
+  const [noteType, setNoteType] = useState("4n");
   const [octave, setOctave] = useState(4);
   const [mode, setMode] = useState("Play");
   const [harmonyOctave, setHarmonyOctave] = useState("Normal");
@@ -157,21 +157,21 @@ function App() {
             <div className='note-buttons'>
               <p> Notes </p>
               <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
               <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
             <p> Type</p>
             <div className='note-type-container'>
-              <Button text = {"Eighth"} onClick={() => handleNoteTypeClick("Eighth")}></Button>
-              <Button text = {"Quarter"} onClick={() => handleNoteTypeClick("Quarter")}></Button>
-              <Button text = {"Half"} onClick={() => handleNoteTypeClick("Half")}></Button>
-              <Button text = {"Full"}onClick={() => handleNoteTypeClick("Full")}></Button>
+              <Button text = {"Eighth"} onClick={() => handleNoteTypeClick("8n")}></Button>
+              <Button text = {"Quarter"} onClick={() => handleNoteTypeClick("4n")}></Button>
+              <Button text = {"Half"} onClick={() => handleNoteTypeClick("2n")}></Button>
+              <Button text = {"Full"}onClick={() => handleNoteTypeClick("1n")}></Button>
             </div>
           </div>
           <div className='range'>

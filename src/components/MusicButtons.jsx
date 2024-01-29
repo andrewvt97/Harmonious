@@ -3,7 +3,7 @@ import Button from "./Button";
 import * as Tone from 'tone';
 
 
-function MusicButtons({currentScale = [], type = "note", setMelody, songKey, range, mode, selectedNote}) {
+function MusicButtons({currentScale = [], type = "note", setMelody, songKey, range, mode, duration, selectedNote}) {
 
 
     const playNote = (noteNames, duration) => {
@@ -36,7 +36,7 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
     
     const handleNoteClick = (note, index, scalePosition) => {
         
-        playNote(`${note}${range}`, 0.5);
+        playNote(`${note}${range}`, duration);
         if (mode != "Add Notes")
             return
         // Update melody state by adding a new array representing the note and its value
