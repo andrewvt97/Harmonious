@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave = "Normal"}){
+function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave = "Normal", playNotes}){
+
+    const harmonyArray = [];
 
     const convertToHarmony = (noteDetails) => { 
         let index = 0;
@@ -58,9 +60,13 @@ function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave =
 
     return (
         <>
+        <Button text="Play Harmony" onClick={() => playNotes(harmonyArray)}></Button>
         {melody.map((note, index) => {
             // console.log(note);
             let harmonyNote = convertToHarmony({...note});
+            harmonyArray.push(harmonyNote);
+            
+            
             // console.log(harmonyNote);
     
             return note["chord"] === 0 ? (

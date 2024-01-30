@@ -32,6 +32,7 @@ function App() {
 
   // state variables
   const [melody, setMelody] = useState([]);
+  
   const [key, setKey] = useState(0);
   const [noteType, setNoteType] = useState("4n");
   const [octave, setOctave] = useState(4);
@@ -39,7 +40,7 @@ function App() {
   const [harmonyOctave, setHarmonyOctave] = useState("Normal");
   const [harmonyType, setHarmonyType] = useState("High");
 
-  const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1);
+  const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1); // I don't want these two to be a state variable
 
     // constant non-state variables
   const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -112,6 +113,50 @@ function App() {
   const handleHarmonyTypeChange = (type) => {
     setHarmonyType(type);
   };
+
+
+  const playNote = (noteNames, duration) => {
+    // Create a Tone.Sampler
+    const sampler = new Tone.Sampler({
+      urls: {
+        C3: "single-piano-note-c3_60bpm_C_major.wav",
+        C4: "single-piano-note-c4_100bpm_C_major.wav",
+        // Add more notes as needed
+      },
+      baseUrl: "https://andrewvt97.github.io/Audio-Files-Harmonious/",
+      onload: () => {
+        // Trigger the attack and release for specified notes
+        sampler.triggerAttackRelease(noteNames, duration);
+      },
+    }).toDestination();
+  
+    // Load the samples
+  };
+
+  const playMelody = (melody) => {
+    // Iterate over each entry in the melody array
+    melody.forEach((note, index) => {
+      // Assuming 'duration' is a property in each melody entry
+      const duration = note["duration"];
+  
+      // Assuming 'note' is a property in each melody entry
+      const noteNames = `${note["note"]}${note["range"]}`;
+      console.log(noteNames)
+  
+      // Call playNote function for each melody entry
+      
+      setTimeout(() => {
+        // Call playNote function for each melody entry
+        playNote(noteNames, duration);
+  
+        // // Optional: Add logic to handle the last note, if needed
+        // if (index === melody.length - 1) {
+        //   // This is the last note, you can perform additional actions here
+        // }
+      }, index * /* Adjust the delay time here */ 1000); // Multiply by the delay time in milliseconds
+    });
+  };
+
   
   console.log("Melody:", JSON.stringify(melody));
   // console.log("Type:", noteType);
@@ -126,12 +171,14 @@ function App() {
         </div>
         <div className='display'>
         <div className='melody-display'> 
+          <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>
           <p> Melody</p>
           <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote}></Melody>
         </div> 
         <div className='harmony-display'> 
+          
           <p> Harmony</p>
-          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType} harmonyOctave={harmonyOctave}></Harmony>
+          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType} harmonyOctave={harmonyOctave} playNotes={playMelody}></Harmony>
         </div> 
 
           <div className='harmony-settings'> 
@@ -157,12 +204,12 @@ function App() {
             <div className='note-buttons'>
               <p> Notes </p>
               <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              duration = {noteType} selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
               <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              duration = {noteType} selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>

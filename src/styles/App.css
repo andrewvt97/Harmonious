@@ -42,7 +42,7 @@
   margin-left: 20px;
 }
 
-.interval-settings {
+.octave-settings {
   background-color: lightskyblue;
   padding: 0 70px 150px 80px;
   font-weight: bold;
@@ -96,6 +96,16 @@
 }
 
 .mode-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.harmony-type-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.harmony-octave-buttons {
   display: flex;
   flex-direction: column;
 }

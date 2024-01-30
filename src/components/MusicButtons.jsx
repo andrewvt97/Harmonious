@@ -1,28 +1,12 @@
 import React from "react";
 import Button from "./Button";
-import * as Tone from 'tone';
 
 
-function MusicButtons({currentScale = [], type = "note", setMelody, songKey, range, mode, duration, selectedNote}) {
+
+function MusicButtons({currentScale = [], type = "note", setMelody, songKey, range, mode, duration, playNote, selectedNote}) {
 
 
-    const playNote = (noteNames, duration) => {
-        // Create a Tone.Sampler
-        const sampler = new Tone.Sampler({
-          urls: {
-            C3: "single-piano-note-c3_60bpm_C_major.wav",
-            C4: "single-piano-note-c4_100bpm_C_major.wav",
-            // Add more notes as needed
-          },
-          baseUrl: "https://andrewvt97.github.io/Audio-Files-Harmonious/",
-          onload: () => {
-            // Trigger the attack and release for specified notes
-            sampler.triggerAttackRelease(noteNames, duration);
-          },
-        }).toDestination();
-      
-        // Load the samples
-      };
+   
       
       
     
@@ -41,7 +25,7 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
             return
         // Update melody state by adding a new array representing the note and its value
         // setMelody((prevMelody) => [...prevMelody, [note, 0]]);
-        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "chordIndex": 0, "key": songKey, "range": range, "index": index, "scalePos": scalePosition}]);
+        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "chordIndex": 0, "key": songKey, "range": range, "duration": duration, "index": index, "scalePos": scalePosition}]);
       };
 
     const handleChordClick = (chord, index, chordPos) => { // index represents note where we want to add chord

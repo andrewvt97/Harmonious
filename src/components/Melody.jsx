@@ -18,7 +18,7 @@ function Melody({melody = [], mode, selectedNoteFunction}) {
           <li key={index}>{note["note"]} {note["chord"] !== 0 ? ":" + note["chord"] : null}</li>
         ))}
       </ul> */}
-
+        
       {melody.map((note, index) => (
             
             note["chord"] === 0 ? (
