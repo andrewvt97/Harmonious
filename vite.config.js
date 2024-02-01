@@ -17,7 +17,12 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: /^tone($|\/)/,
+      external: ['./tone'],
+    },
+  },
+  resolve: {
+    alias: {
+      'tone': 'tone'
     },
   },
 });
