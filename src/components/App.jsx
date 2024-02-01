@@ -7,6 +7,7 @@ import Harmony from './Harmony';
 import MusicButtons from './MusicButtons';
 
 import * as Tone from 'tone';
+// import * as Tone from 'tone/Tone/core/Tone.ts';
 
 function App() {
 
@@ -167,7 +168,7 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> Dr. Cheesey's Thanksgiving Special</p>
+          <p className='website-name'> Harmony</p>
         </div>
         <div className='display'>
         <div className='melody-display'> 
