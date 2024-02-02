@@ -17,6 +17,9 @@ function Melody({melody = [], mode, selectedNoteFunction, modifyMelody}) {
             console.log(MelodyIndex);
             selectedNoteFunction(MelodyIndex);
         }
+        else if (mode === "Remove Chords"){
+            modifyMelody(prevMelody => prevMelody.map((note, i) => (i === MelodyIndex ? { ...note, chord: 0, chordIndex: 0 } : note)));
+        }
     };
 
     return <>
