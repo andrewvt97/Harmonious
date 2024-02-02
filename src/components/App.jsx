@@ -30,6 +30,7 @@ function App() {
   
   // I understand now! Use the parent component to manage the state variables and pass them down as props to children components
   // I learned another thing. It is common to pass both state variable and state setter function. This is called lifting state.
+  // Must use state functions to modify state variables or it won't render properly
 
   // state variables
   const [melody, setMelody] = useState([]);
@@ -174,7 +175,7 @@ function App() {
         <div className='melody-display'> 
           <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>
           <p> Melody</p>
-          <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote}></Melody>
+          <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote} modifyMelody={setMelody}></Melody>
         </div> 
         <div className='harmony-display'> 
           
