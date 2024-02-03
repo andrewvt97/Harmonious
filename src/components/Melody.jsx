@@ -14,7 +14,6 @@ function Melody({melody = [], mode, selectedNoteFunction, modifyMelody}) {
 
         }
         else if (mode === "Attach Chords"){
-            console.log(MelodyIndex);
             selectedNoteFunction(MelodyIndex);
         }
         else if (mode === "Remove Chords"){

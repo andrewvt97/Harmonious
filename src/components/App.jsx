@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const handleBodyClick = async () => {
       await Tone.start();
-      console.log('audio is ready');
+      // console.log('audio is ready');
     };
 
     document.body.addEventListener('click', handleBodyClick, { once: true });
@@ -55,13 +55,16 @@ function App() {
 
   const major = [2, 2, 1, 2, 2, 2];
   const current_key_scale = [];
-  current_key_scale.push({"index":key, "note": notes[key]}); // add object with index to transpose easily
+  current_key_scale.push({"index":key, "note": notes[key], "adjRange": 0}); // add object with index to transpose easily
   let note_index = key;
+  let range = 0;
   for (let i = 0; i < major.length; i++) {
     note_index = (note_index + major[i]) % 12;
-    current_key_scale.push({"index":note_index, "note":notes[note_index]})
+    if (notes[note_index][0] === "C")
+      range = 1
+    current_key_scale.push({"index":note_index, "note":notes[note_index], "adjRange": range})
   }
-
+  // console.log(key, current_key_scale);
   // major key Cmaj Dm Em Fmaj G7 Am Bdim
   const chord_type = {1: "maj", 2: "m", 3: "m", 4: "maj", 5: "7", 6: "m", 7: "dim"};
   const chords = [];
@@ -136,6 +139,7 @@ function App() {
   };
 
   const playMelody = (melody) => {
+    console.log("Melody:", JSON.stringify(melody));
     // Iterate over each entry in the melody array
     melody.forEach((note, index) => {
       // Assuming 'duration' is a property in each melody entry
@@ -143,7 +147,6 @@ function App() {
   
       // Assuming 'note' is a property in each melody entry
       const noteNames = `${note["note"]}${note["range"]}`;
-      console.log(noteNames)
   
       // Call playNote function for each melody entry
       
@@ -160,7 +163,7 @@ function App() {
   };
 
   
-  console.log("Melody:", JSON.stringify(melody));
+  // console.log("Melody:", JSON.stringify(melody));
   // console.log("Type:", noteType);
   // console.log("Key:", key);
   // console.log("Mode:", mode);

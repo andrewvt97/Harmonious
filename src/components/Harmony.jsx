@@ -26,7 +26,6 @@ function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave =
         else if (harmonyOctave === "Low")
             noteDetails["range"] -= 1;
         
-        console.log( noteDetails["note"]);
 
         // check if harmony note needs to be adjusted for chord
         if (noteDetails["chord"] != 0){
