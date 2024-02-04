@@ -8,18 +8,30 @@ function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave =
     const convertToHarmony = (noteDetails) => { 
         let index = 0;
         if (harmonyType === "High"){
+            console.log(scale)
             index = noteDetails["scalePos"] + 2;
-            if (index > 6)
+     
+
+            if (scale[noteDetails["scalePos"]]["index"] > scale[index % 7]["index"]){
                 noteDetails["range"] += 1;
+            }
+            
+            
             noteDetails["note"] = scale[index % 7]["note"];
             noteDetails["scalePos"] = index % 7;
+            noteDetails["index"] = scale[index % 7]["index"];
         }
         else{
             index = noteDetails["scalePos"] - 2;
-            if (index < 0)
+            
+            if (scale[noteDetails["scalePos"]]["index"] < scale[(index + 7) % 7]["index"]){
                 noteDetails["range"] -= 1;
+            }
+
+
             noteDetails["note"] = scale[(index + 7) % 7]["note"];
             noteDetails["scalePos"] = (index + 7) % 7;
+            noteDetails["index"] = scale[(index + 7) % 7]["index"];
         }
         if (harmonyOctave === "High")
             noteDetails["range"] += 1;
@@ -37,10 +49,18 @@ function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave =
                 if ((noteDetails["scalePos"] + 1) % 7 === chordIndex || (noteDetails["scalePos"] - 1 + 7) % 7 == chordIndex){
                     noteDetails["note"] = scale[chordIndex]["note"];
                     noteDetails["scalePos"] = chordIndex;
-                    if (chordIndex === 0)
+                    
+
+                    // change chord ranges if going from something D# to B or something like that (may need to adjust ranges)
+                    if (noteDetails["index"] < 3 && scale[chordIndex]["index"] > 8){
+                        noteDetails["range"] -= 1;
+                    }
+                    // opposite of above
+                    else if (noteDetails["index"] > 8 && scale[chordIndex]["index"] < 3){
                         noteDetails["range"] += 1;
-                    else if (chordIndex === 6)
-                        noteDetails["range"] += 1;
+                    }
+
+
                     break;
                 }
                 chordIndex = (chordIndex + 2) % 7;
@@ -51,7 +71,7 @@ function Harmony({melody = [], scale = [], harmonyType = "High", harmonyOctave =
         // if (scale[chordIndex] 
     
         
-        // Note: NEVER CHANGED INDEX BUT IS THAT IMPORTANT?
+       
 
         return noteDetails;
     };
