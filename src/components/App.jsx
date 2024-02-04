@@ -172,7 +172,7 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> Harmony</p>
+          <p className='website-name'> Dr. Cheesey's Thanksgiving Special</p>
         </div>
         <div className='display'>
         <div className='melody-display'> 
