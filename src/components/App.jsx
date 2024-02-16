@@ -36,11 +36,12 @@ function App() {
   const [melody, setMelody] = useState([]);
   
   const [key, setKey] = useState(0);
-  const [noteType, setNoteType] = useState("4n");
+  const [noteType, setNoteType] = useState(4);
   const [octave, setOctave] = useState(4);
   const [mode, setMode] = useState("Play");
   const [harmonyOctave, setHarmonyOctave] = useState("Normal");
   const [harmonyType, setHarmonyType] = useState("High");
+  const [bpm, setBPM] = useState(60);
 
   const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1); // I don't want these two to be a state variable
 
@@ -143,7 +144,7 @@ function App() {
     // Iterate over each entry in the melody array
     melody.forEach((note, index) => {
       // Assuming 'duration' is a property in each melody entry
-      const duration = note["duration"];
+      const durationInSeconds = 60 / bpm / note["duration"] ;
   
       // Assuming 'note' is a property in each melody entry
       const noteNames = `${note["note"]}${note["range"]}`;
@@ -152,16 +153,17 @@ function App() {
       
       setTimeout(() => {
         // Call playNote function for each melody entry
-        playNote(noteNames, duration);
+        playNote(noteNames, durationInSeconds);
   
         // // Optional: Add logic to handle the last note, if needed
         // if (index === melody.length - 1) {
         //   // This is the last note, you can perform additional actions here
         // }
-      }, index * /* Adjust the delay time here */ 1000); // Multiply by the delay time in milliseconds
+      }, index * /* Adjust the delay time here */ 500); // Multiply by the delay time in milliseconds
     });
   };
 
+  
   
   // console.log("Melody:", JSON.stringify(melody));
   // console.log("Type:", noteType);
@@ -209,21 +211,21 @@ function App() {
             <div className='note-buttons'>
               <p> Notes </p>
               <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              duration = {noteType} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} bpm = {bpm} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
               <p> Chords </p>
               <MusicButtons currentScale={chords} type = "chord" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
-              duration = {noteType} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
+              duration = {noteType} bpm = {bpm} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
           <div className='note-type-buttons'>
             <p> Type</p>
             <div className='note-type-container'>
-              <Button text = {"Eighth"} onClick={() => handleNoteTypeClick("8n")}></Button>
-              <Button text = {"Quarter"} onClick={() => handleNoteTypeClick("4n")}></Button>
-              <Button text = {"Half"} onClick={() => handleNoteTypeClick("2n")}></Button>
-              <Button text = {"Full"}onClick={() => handleNoteTypeClick("1n")}></Button>
+              <Button text = {"Eighth"} onClick={() => handleNoteTypeClick(8)}></Button>
+              <Button text = {"Quarter"} onClick={() => handleNoteTypeClick(4)}></Button>
+              <Button text = {"Half"} onClick={() => handleNoteTypeClick(2)}></Button>
+              <Button text = {"Full"}onClick={() => handleNoteTypeClick(1)}></Button>
             </div>
           </div>
           <div className='range'>
