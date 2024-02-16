@@ -142,9 +142,12 @@ function App() {
   const playMelody = (melody) => {
     console.log("Melody:", JSON.stringify(melody));
     // Iterate over each entry in the melody array
+    let durationInSeconds = 0;
+    let timeToPlayNote = 0;
     melody.forEach((note, index) => {
       // Assuming 'duration' is a property in each melody entry
-      const durationInSeconds = 60 / bpm / note["duration"] ;
+      timeToPlayNote += durationInSeconds; // add on time it took to play previous notes
+      durationInSeconds = 60 / bpm / note["duration"] ;
   
       // Assuming 'note' is a property in each melody entry
       const noteNames = `${note["note"]}${note["range"]}`;
@@ -155,11 +158,7 @@ function App() {
         // Call playNote function for each melody entry
         playNote(noteNames, durationInSeconds);
   
-        // // Optional: Add logic to handle the last note, if needed
-        // if (index === melody.length - 1) {
-        //   // This is the last note, you can perform additional actions here
-        // }
-      }, index * /* Adjust the delay time here */ 500); // Multiply by the delay time in milliseconds
+      }, timeToPlayNote * 1000); // Multiply by the delay time in milliseconds
     });
   };
 
