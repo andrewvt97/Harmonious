@@ -8,7 +8,6 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
     // needs access to melody and setMelody
     
     const handleNoteClick = (note, index, scalePosition, noteRange) => {
-      console.log(duration)
         playNote(`${note}${noteRange}`, 60/bpm/duration);
         if (mode != "Add Notes")
             return

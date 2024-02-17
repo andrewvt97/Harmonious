@@ -84,6 +84,17 @@ function App() {
     setNoteType(type);
   };
 
+  const handleBPMChange = (button) => {
+      if (button === ">"){
+        if (bpm < 240)
+          setBPM(bpm + 10)
+      }
+      else {
+        if (bpm > 20)
+          setBPM(bpm - 10)
+      }
+  }
+
   const handleOctaveClick = (button) => {
     if (button === ">"){
       if (octave !== 8)
@@ -140,7 +151,7 @@ function App() {
   };
 
   const playMelody = (melody) => {
-    console.log("Melody:", JSON.stringify(melody));
+    // console.log("Melody:", JSON.stringify(melody));
     // Iterate over each entry in the melody array
     let durationInSeconds = 0;
     let timeToPlayNote = 0;
@@ -218,14 +229,24 @@ function App() {
               duration = {noteType} bpm = {bpm} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
           </div>
-          <div className='note-type-buttons'>
-            <p> Type</p>
-            <div className='note-type-container'>
-              <Button text = {"Eighth"} onClick={() => handleNoteTypeClick(8)}></Button>
-              <Button text = {"Quarter"} onClick={() => handleNoteTypeClick(4)}></Button>
-              <Button text = {"Half"} onClick={() => handleNoteTypeClick(2)}></Button>
-              <Button text = {"Full"}onClick={() => handleNoteTypeClick(1)}></Button>
+          <div className='notes-and-bpm'>
+            <div className='note-type-buttons'>
+              <p> Type</p>
+              <div className='note-type-container'>
+                <Button text = {"Eighth"} onClick={() => handleNoteTypeClick(8)}></Button>
+                <Button text = {"Quarter"} onClick={() => handleNoteTypeClick(4)}></Button>
+                <Button text = {"Half"} onClick={() => handleNoteTypeClick(2)}></Button>
+                <Button text = {"Full"}onClick={() => handleNoteTypeClick(1)}></Button>
+              </div>
             </div>
+            <div className='bpm-buttons'>
+                <p> BPM</p>
+                  <div className='bpm-container'> 
+                    <Button text = {"<"} onClick={() => handleBPMChange("<")}></Button>
+                    <p> {bpm} </p>
+                    <Button text = {">"} onClick={() => handleBPMChange(">")}></Button>
+                  </div>
+            </div>   
           </div>
           <div className='range'>
             <div className='adjust-octave-buttons'>
