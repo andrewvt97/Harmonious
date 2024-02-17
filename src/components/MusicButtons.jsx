@@ -42,3 +42,6 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
 
 
 export default MusicButtons;
+
+
+

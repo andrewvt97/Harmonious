@@ -184,7 +184,7 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> Harmonious</p>
+          <p className='website-name'> ♫ Harmonious 🎤</p>
         </div>
         <div className='display'>
         <div className='melody-display'> 
@@ -202,16 +202,16 @@ function App() {
             <div className='octave-settings'>
                 <p> Harmony Octave</p>
                 <div className = "harmony-octave-buttons"> 
-                  <Button text="Normal" onClick={() => handleHarmonyOctaveChange("Normal")}></Button>
-                  <Button text="High" onClick={() => handleHarmonyOctaveChange("High")}></Button>
-                  <Button text="Low" onClick={() => handleHarmonyOctaveChange("Low")}></Button>
+                  <Button active = {harmonyOctave === "Normal"} text="Normal" onClick={() => handleHarmonyOctaveChange("Normal")}></Button>
+                  <Button active = {harmonyOctave === "High"} text="High" onClick={() => handleHarmonyOctaveChange("High")}></Button>
+                  <Button active = {harmonyOctave === "Low"} text="Low" onClick={() => handleHarmonyOctaveChange("Low")}></Button>
                 </div>
             </div>
             <div className='chord-note-settings'>
               <p> Harmony Type</p>
               <div className = "harmony-type-buttons"> 
-                  <Button text="High" onClick={() => handleHarmonyTypeChange("High")}></Button>
-                  <Button text="Low" onClick={() => handleHarmonyTypeChange("Low")}></Button>
+                  <Button active = {harmonyType === "High"} text="High" onClick={() => handleHarmonyTypeChange("High")}></Button>
+                  <Button active = {harmonyType === "Low"}text="Low" onClick={() => handleHarmonyTypeChange("Low")}></Button>
               </div>
             </div>
           </div>
@@ -233,10 +233,10 @@ function App() {
             <div className='note-type-buttons'>
               <p> Type</p>
               <div className='note-type-container'>
-                <Button text = {"Eighth"} onClick={() => handleNoteTypeClick(8)}></Button>
-                <Button text = {"Quarter"} onClick={() => handleNoteTypeClick(4)}></Button>
-                <Button text = {"Half"} onClick={() => handleNoteTypeClick(2)}></Button>
-                <Button text = {"Full"}onClick={() => handleNoteTypeClick(1)}></Button>
+                <Button active = {noteType === 8} text = {"Eighth"} onClick={() => handleNoteTypeClick(8)}></Button>
+                <Button active = {noteType === 4} text = {"Quarter"} onClick={() => handleNoteTypeClick(4)}></Button>
+                <Button active = {noteType === 2} text = {"Half"} onClick={() => handleNoteTypeClick(2)}></Button>
+                <Button active = {noteType === 1} text = {"Full"}onClick={() => handleNoteTypeClick(1)}></Button>
               </div>
             </div>
             <div className='bpm-buttons'>
@@ -274,11 +274,11 @@ function App() {
           <div className='functionality-buttons'>
             <p> Mode</p>
             <div className='mode-buttons'>
-              <Button text="Play" onClick={() => handleModeChange("Play")}></Button>
-              <Button text="Add Notes" onClick={() => handleModeChange("Add Notes")}></Button>
-              <Button text="Remove Notes" onClick={() => handleModeChange("Remove Notes")}></Button>
-              <Button text="Attach Chord" onClick={() => handleModeChange("Attach Chords")}></Button>
-              <Button text="Remove Chord" onClick={() => handleModeChange("Remove Chords")}></Button>
+              <Button active = {mode === "Play"} text="Play" onClick={() => handleModeChange("Play")}></Button>
+              <Button active = {mode === "Add Notes"} text="Add Notes" onClick={() => handleModeChange("Add Notes")}></Button>
+              <Button active = {mode === "Remove Notes"} text="Remove Notes" onClick={() => handleModeChange("Remove Notes")}></Button>
+              <Button active = {mode === "Attach Chords"} text="Attach Chord" onClick={() => handleModeChange("Attach Chords")}></Button>
+              <Button active = {mode === "Remove Chords"} text="Remove Chord" onClick={() => handleModeChange("Remove Chords")}></Button>
             </div>
           </div>
           
