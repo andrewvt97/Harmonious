@@ -32,8 +32,13 @@ function App() {
   // I learned another thing. It is common to pass both state variable and state setter function. This is called lifting state.
   // Must use state functions to modify state variables or it won't render properly
 
+  /* I learned another thing! When you have a variable that is dependent on another one, use a useEffect and include the state variables 
+  in the dependency array. Ex: Harmony is dependent on melody, harmonyOctave, and harmonyType
+  */
+
   // state variables
   const [melody, setMelody] = useState([]);
+  const [harmony, setHarmony] = useState(melody);
   
   const [key, setKey] = useState(0);
   const [noteType, setNoteType] = useState(4);
@@ -44,6 +49,83 @@ function App() {
   const [bpm, setBPM] = useState(60);
 
   const [selectedMelodyNote, setSelectedMelodyNote] = useState(-1); // I don't want these two to be a state variable
+
+  const convertToHarmony = (noteDetails, scale) => { 
+    let index = 0;
+    if (harmonyType === "High"){
+        console.log(scale)
+        index = noteDetails["scalePos"] + 2;
+ 
+
+        if (scale[noteDetails["scalePos"]]["index"] > scale[index % 7]["index"]){
+            noteDetails["range"] += 1;
+        }
+        
+        
+        noteDetails["note"] = scale[index % 7]["note"];
+        noteDetails["scalePos"] = index % 7;
+        noteDetails["index"] = scale[index % 7]["index"];
+    }
+    else{
+        index = noteDetails["scalePos"] - 2;
+        
+        if (scale[noteDetails["scalePos"]]["index"] < scale[(index + 7) % 7]["index"]){
+            noteDetails["range"] -= 1;
+        }
+
+
+        noteDetails["note"] = scale[(index + 7) % 7]["note"];
+        noteDetails["scalePos"] = (index + 7) % 7;
+        noteDetails["index"] = scale[(index + 7) % 7]["index"];
+    }
+    if (harmonyOctave === "High")
+        noteDetails["range"] += 1;
+    else if (harmonyOctave === "Low")
+        noteDetails["range"] -= 1;
+    
+
+    // check if harmony note needs to be adjusted for chord
+    if (noteDetails["chord"] != 0){
+        let chordIndex = noteDetails["chordIndex"];
+        // console.log(chordIndex);
+
+        // check all 3 notes of chord
+        for (let i = 0; i < 3; i ++){
+            if ((noteDetails["scalePos"] + 1) % 7 === chordIndex || (noteDetails["scalePos"] - 1 + 7) % 7 == chordIndex){
+                noteDetails["note"] = scale[chordIndex]["note"];
+                noteDetails["scalePos"] = chordIndex;
+                
+
+                // change chord ranges if going from something D# to B or something like that (may need to adjust ranges)
+                if (noteDetails["index"] < 3 && scale[chordIndex]["index"] > 8){
+                    noteDetails["range"] -= 1;
+                }
+                // opposite of above
+                else if (noteDetails["index"] > 8 && scale[chordIndex]["index"] < 3){
+                    noteDetails["range"] += 1;
+                }
+
+
+                break;
+            }
+            chordIndex = (chordIndex + 2) % 7;
+        }
+    }
+
+    return noteDetails;
+};
+
+
+  useEffect(() => {
+    // This function will run every time melody, harmonyType, or harmonyOctave changes.
+
+    const harmonyArray = melody.map(note => {
+      // Assuming convertToHarmony can also take harmonyType and harmonyOctave as arguments
+      return convertToHarmony({...note}, current_key_scale);
+    });
+
+    setHarmony(harmonyArray); // Update the harmony state variable
+}, [melody, harmonyType, harmonyOctave]); // Dependency array, useEffect will run when any variable in this array changes
 
     // constant non-state variables
   const notes = ["C", "C#", "D", "D#", "E" , "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -193,9 +275,9 @@ function App() {
           <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote} modifyMelody={setMelody}></Melody>
         </div> 
         <div className='harmony-display'> 
-          
+          <Button text="Play Harmony" onClick={() => playMelody(harmony)}></Button>
           <p> Harmony</p>
-          <Harmony className='harmony-display' melody = {melody} scale = {current_key_scale} harmonyType={harmonyType} harmonyOctave={harmonyOctave} playNotes={playMelody}></Harmony>
+          <Harmony className='harmony-display' harmony = {harmony}></Harmony>
         </div> 
 
           <div className='harmony-settings'> 
