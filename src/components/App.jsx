@@ -255,6 +255,11 @@ function App() {
     });
   };
 
+  const playMelodyandHarmony = (melody, harmony) => {
+      playMelody(melody);
+      playMelody(harmony);
+  };
+
   
   
   // console.log("Melody:", JSON.stringify(melody));
@@ -268,6 +273,9 @@ function App() {
         <div className='header'>
           <p className='website-name'> ♫ Harmonious 🎤</p>
         </div>
+        <div className='play-both-button'>
+          <Button text="Play Melody and Harmony" onClick={() => playMelodyandHarmony(melody, harmony)}></Button>
+        </div>  
         <div className='display'>
         <div className='melody-display'> 
           <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>

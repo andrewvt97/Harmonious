@@ -28,6 +28,13 @@
   margin-top: 20px;
 }
 
+.play-both-button {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
 .melody-display {
   background-color: burlywood;
   margin-left: 50px;
