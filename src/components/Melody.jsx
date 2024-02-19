@@ -22,23 +22,43 @@ function Melody({melody = [], mode, selectedNoteFunction, modifyMelody}) {
     };
 
     return <>
-        {/* <ul>
-        {melody.map((note, index) => (
-          <li key={index}>{note["note"]} {note["chord"] !== 0 ? ":" + note["chord"] : null}</li>
-        ))}
-      </ul> */}
         
-      {melody.map((note, index) => (
-            
-            note["chord"] === 0 ? (
-            <Button key={index} text={note["note"]} onClick={() => handleMelodyClick(index)} />
-            ): (
-            // <Button key={index} text={note["note"] + note["chord"]} onClick={() => handleMelodyClick(index)} />
-            <Button key={index} text={`${note["note"]}\n\n${note["chord"]}`} onClick={() => handleMelodyClick(index)} />
-            )
-            
-        ))}
+        {
+            melody.map((note, index) => {
+                let buttonText;
+
+                if (note["chord"] === 0) {
+                    buttonText = note["note"];
+                } else {
+                    buttonText = `${note["note"]}\n${note["chord"]}`; 
+                }
+                
+                if (note["duration"] === 8){
+                    buttonText = "♪" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 4){
+                    buttonText = "♩" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 2){
+                    buttonText = "𝅗𝅥" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 1){
+                    buttonText = "𝅝" + "\n" + buttonText;
+                }
+
+
+                return (
+                <Button key={index} text={buttonText}  multiLine = {true} onClick={() => handleMelodyClick(index)} />
+                );
+            })
+        }
     </>
 }
 
 export default Melody;
+
+
+// ♪
+// ♩
+// 𝅗𝅥
+// 𝅝

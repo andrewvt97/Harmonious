@@ -4,20 +4,38 @@ import Button from "./Button";
 function Harmony({harmony = []}){
 
 
-    return (
-        <>
+    return <>
         
-        {harmony.map((note, index) => {
-           
-    
-            return note["chord"] === 0 ? (
-            <Button key={index} text={note["note"]} onClick={() => handleMelodyClick(index)} />
-            ) : (
-            <Button key={index} text={`${note["note"]}\n\n${note["chord"]}`} onClick={() => handleMelodyClick(index)} />
-            );
-        })}
-        </>
-  );
+        {
+            harmony.map((note, index) => {
+                let buttonText;
+
+                if (note["chord"] === 0) {
+                    buttonText = note["note"];
+                } else {
+                    buttonText = `${note["note"]}\n${note["chord"]}`; 
+                }
+                
+                if (note["duration"] === 8){
+                    buttonText = "♪" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 4){
+                    buttonText = "♩" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 2){
+                    buttonText = "𝅗𝅥" + "\n" + buttonText;
+                }
+                else if (note["duration"] === 1){
+                    buttonText = "𝅝" + "\n" + buttonText;
+                }
+
+
+                return (
+                <Button key={index} text={buttonText}  multiLine = {true} onClick={() => handleMelodyClick(index)} />
+                );
+            })
+        }
+    </>
 
 }
 

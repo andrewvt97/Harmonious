@@ -35,6 +35,16 @@
   margin-top: 20px;
 }
 
+.melody-header{
+  display: flex;
+  margin-left:  120px;;
+}
+
+.harmony-header {
+  display: flex;
+  margin-left:  120px;;
+}
+
 .melody-display {
   background-color: burlywood;
   margin-left: 50px;
