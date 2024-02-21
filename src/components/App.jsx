@@ -42,7 +42,7 @@ function App() {
   
   const [key, setKey] = useState(0);
   const [noteType, setNoteType] = useState(4);
-  const [octave, setOctave] = useState(4);
+  const [octave, setOctave] = useState(3);
   const [mode, setMode] = useState("Play");
   const [harmonyOctave, setHarmonyOctave] = useState("Normal");
   const [harmonyType, setHarmonyType] = useState("High");
@@ -257,13 +257,16 @@ function App() {
   
       // Call playNote function for each melody entry
       
-      setTimeout(() => {
-        // Call playNote function for each melody entry
-        playNote(noteNames, durationInSeconds);
-  
-      }, timeToPlayNote * 1000); // Multiply by the delay time in milliseconds
-    });
-  };
+       // Use an IIFE to capture the current state of 'durationInSeconds' and 'noteNames' 
+    (function(noteNames, duration, timeToPlayNote) { 
+        setTimeout(() => { 
+          playNote(noteNames, duration); 
+        }, timeToPlayNote * 1000); // Multiply by the delay time in milliseconds 
+      })(noteNames, durationInSeconds, timeToPlayNote); 
+    }); 
+    }; 
+
+
 
   const playMelodyandHarmony = (melody, harmony) => {
       playMelody(melody);
