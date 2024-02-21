@@ -56,7 +56,6 @@ function App() {
         console.log(scale)
         index = noteDetails["scalePos"] + 2;
  
-
         if (scale[noteDetails["scalePos"]]["index"] > scale[index % 7]["index"]){
             noteDetails["range"] += 1;
         }
@@ -138,6 +137,7 @@ function App() {
 
   const major = [2, 2, 1, 2, 2, 2];
   const current_key_scale = [];
+  
   current_key_scale.push({"index":key, "note": notes[key], "adjRange": 0}); // add object with index to transpose easily
   let note_index = key;
   let range = 0;
@@ -147,6 +147,16 @@ function App() {
       range = 1
     current_key_scale.push({"index":note_index, "note":notes[note_index], "adjRange": range})
   }
+
+  const noteButtons = [...current_key_scale];
+  let buttonToAdd;
+
+  for (let i = 0; i < current_key_scale.length; i ++){
+    buttonToAdd = {...current_key_scale[i]};
+    buttonToAdd["adjRange"] += 1;
+    noteButtons.push(buttonToAdd);
+  }
+
   // console.log(key, current_key_scale);
   // major key Cmaj Dm Em Fmaj G7 Am Bdim
   const chord_type = {1: "maj", 2: "m", 3: "m", 4: "maj", 5: "7", 6: "m", 7: "dim"};
@@ -233,7 +243,7 @@ function App() {
   };
 
   const playMelody = (melody) => {
-    // console.log("Melody:", JSON.stringify(melody));
+    console.log("Melody:", JSON.stringify(melody));
     // Iterate over each entry in the melody array
     let durationInSeconds = 0;
     let timeToPlayNote = 0;
@@ -271,7 +281,7 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> ♫ Harmonious 🎤</p>
+          <p className='website-name'> ♫ Harmony 🎤</p>
         </div>
         <div className='play-both-button'>
           <Button text="Play Melody and Harmony" onClick={() => playMelodyandHarmony(melody, harmony)}></Button>
@@ -318,7 +328,7 @@ function App() {
           <div className='music-components'>
             <div className='note-buttons'>
               <p> Notes </p>
-              <MusicButtons currentScale={current_key_scale} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
+              <MusicButtons currentScale={noteButtons} type = "note" setMelody={setMelody} songKey = {notes[key]} range = {octave} mode = {mode} 
               duration = {noteType} bpm = {bpm} playNote={playNote} selectedNote={selectedMelodyNote}></MusicButtons>
             </div>
             <div className='chord-buttons'>
@@ -350,9 +360,9 @@ function App() {
             <div className='adjust-octave-buttons'>
               <p> Octave </p>
               <div className='octave-line-display'>
-                <p> C{octave}</p>
+                <p> {noteButtons[0]["note"]}{octave + noteButtons[0]["adjRange"]}</p>
                 <hr className='octave-range'></hr>
-                <p> B{octave}</p>
+                <p> {noteButtons[noteButtons.length-1]["note"]}{octave + noteButtons[noteButtons.length-1]["adjRange"]}</p>
               </div> 
               <div className='octave-buttons'>
                 <Button text = {"<"} onClick={() => handleOctaveClick("<")}></Button>

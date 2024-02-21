@@ -13,7 +13,7 @@ function MusicButtons({currentScale = [], type = "note", setMelody, songKey, ran
             return
         // Update melody state by adding a new array representing the note and its value
         // setMelody((prevMelody) => [...prevMelody, [note, 0]]);
-        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "chordIndex": 0, "key": songKey, "range": noteRange, "duration": duration, "index": index, "scalePos": scalePosition}]);
+        setMelody((prevMelody) => [...prevMelody, {"note": note, "chord": 0, "chordIndex": 0, "key": songKey, "range": noteRange, "duration": duration, "index": index, "scalePos": scalePosition % 7}]);
       };
 
     const handleChordClick = (chord, index, chordPos) => { // index represents note where we want to add chord
