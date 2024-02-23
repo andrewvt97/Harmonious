@@ -296,7 +296,7 @@ function App() {
               <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>
             </div>
             <div className='melody-display'>   
-            <Melody className='melody-display' melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote} modifyMelody={setMelody}></Melody>
+            <Melody melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote} modifyMelody={setMelody}></Melody>
             </div>      
           </div>
           <div className='harmony-section'> 

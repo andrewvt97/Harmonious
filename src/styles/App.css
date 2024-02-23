@@ -45,18 +45,48 @@
   margin-left:  120px;;
 }
 
+
+
+
 .melody-display {
   background-color: burlywood;
   margin-left: 50px;
-  padding: 200px 200px 200px 200px;
+  display: flex; /* Use flexbox to align children */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  align-items: flex-start; /* Align children to the top */
+  justify-content: flex-start; /* Align children to the left */
+  width: 500px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+  border: 1px solid #ccc; /* Just for visibility */
+  padding: 10px; /* Reduced padding to just provide a small buffer around content */
+}
+
+/* CSS for the Melody component (if it's a direct parent of the buttons) */
+.Melody {
+  
+  display: flex; /* Use flexbox to align buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+  width: 100%; /* Take the full width of the parent */
 }
 
 .harmony-display {
   background-color: lightpink;
   margin-left: 50px;
-  padding: 200px 200px 200px 200px;
+  display: flex; /* Use flexbox to align children */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  align-items: flex-start; /* Align children to the top */
+  justify-content: flex-start; /* Align children to the left */
+  width: 500px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+  border: 1px solid #ccc; /* Just for visibility */
+  padding: 10px; /* Reduced padding to just provide a small buffer around content */
 }
 
+.Harmony {
+  display: flex; /* Use flexbox to align buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+  width: 100%; /* Take the full width of the parent */
+}
 .harmony-settings {
   margin-left: 20px;
 }
@@ -133,4 +163,8 @@
 .harmony-octave-buttons {
   display: flex;
   flex-direction: column;
+}
+
+.melody-notes {
+  margin-left: auto;
 }

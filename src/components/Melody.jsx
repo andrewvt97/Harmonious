@@ -21,8 +21,8 @@ function Melody({melody = [], mode, selectedNoteFunction, modifyMelody}) {
         }
     };
 
-    return <>
-        
+    return (
+    <div className="Melody">      
         {
             melody.map((note, index) => {
                 let buttonText;
@@ -52,7 +52,8 @@ function Melody({melody = [], mode, selectedNoteFunction, modifyMelody}) {
                 );
             })
         }
-    </>
+    </div>
+    );
 }
 
 export default Melody;

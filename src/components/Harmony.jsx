@@ -4,7 +4,8 @@ import Button from "./Button";
 function Harmony({harmony = []}){
 
 
-    return <>
+    return (
+    <div className="Harmony">   
         
         {
             harmony.map((note, index) => {
@@ -35,7 +36,8 @@ function Harmony({harmony = []}){
                 );
             })
         }
-    </>
+    </div>
+    );
 
 }
 
