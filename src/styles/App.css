@@ -49,7 +49,7 @@
 
 
 .melody-display {
-  background-color: #F0F0F0;
+  background-color: #B8B8B8;
   margin-left: 50px;
   display: flex; /* Use flexbox to align children */
   flex-wrap: wrap; /* Allow items to wrap to the next line */
@@ -70,7 +70,7 @@
 }
 
 .harmony-display {
-  background-color: #F0F0F0;
+  background-color: #B8B8B8;
   margin-left: 50px;
   display: flex; /* Use flexbox to align children */
   flex-wrap: wrap; /* Allow items to wrap to the next line */
@@ -108,7 +108,7 @@
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  background-color: #F0F0F0;
+  background-color: #B8B8B8;
 }
 
 .music-components {
