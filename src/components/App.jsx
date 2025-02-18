@@ -284,16 +284,12 @@ function App() {
       <>
         
         <div className='header'>
-          <p className='website-name'> ♫ Harmony 🎤</p>
+          <p className='website-name'> ♫ Harmonious 🎤 (still in progress)</p>
         </div>
-        <div className='play-both-button'>
-          <Button text="Play Melody and Harmony" onClick={() => playMelodyandHarmony(melody, harmony)}></Button>
-        </div>  
         <div className='display'>
           <div className='melody-section'>
             <div className='melody-header'>
               <p> Melody</p>
-              <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>
             </div>
             <div className='melody-display'>   
             <Melody melody = {melody} mode = {mode} selectedNoteFunction={setSelectedMelodyNote} modifyMelody={setMelody}></Melody>
@@ -302,7 +298,6 @@ function App() {
           <div className='harmony-section'> 
           <div className='harmony-header'>
             <p> Harmony</p>
-            <Button text="Play Harmony" onClick={() => playMelody(harmony)}></Button>
           </div>
           <div className='harmony-display'> 
             <Harmony className='harmony-display' harmony = {harmony}></Harmony>
@@ -310,6 +305,15 @@ function App() {
         </div>
 
           <div className='harmony-settings'> 
+            <div className ='audio-settings'>
+              <p> Audio </p>
+              <div className = "audio-buttons">
+                <Button text="Play Melody" onClick={() => playMelody(melody)}></Button>
+                <Button text="Play Harmony" onClick={() => playMelody(harmony)}></Button>
+                <Button text="Play All" onClick={() => playMelodyandHarmony(melody, harmony)}></Button>
+              </div>
+
+            </div>
             <div className='octave-settings'>
                 <p> Harmony Octave</p>
                 <div className = "harmony-octave-buttons"> 

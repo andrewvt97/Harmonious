@@ -19,7 +19,7 @@
 }
 
 .website-name {
-  font-size: 52px;
+  font-size: 2vw;
   
 }
 
@@ -28,21 +28,17 @@
   margin-top: 20px;
 }
 
-.play-both-button {
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-}
 
 .melody-header{
   display: flex;
-  margin-left:  120px;;
+  margin-left:  300px;;
+  font-weight: bold;
 }
 
 .harmony-header {
   display: flex;
-  margin-left:  120px;;
+  margin-left:  300px;;
+  font-weight: bold;
 }
 
 
@@ -55,7 +51,7 @@
   flex-wrap: wrap; /* Allow items to wrap to the next line */
   align-items: flex-start; /* Align children to the top */
   justify-content: flex-start; /* Align children to the left */
-  width: 400px; /* Adjust width as needed */
+  width: 37vw; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc; /* Just for visibility */
   padding: 10px; /* Reduced padding to just provide a small buffer around content */
@@ -76,7 +72,7 @@
   flex-wrap: wrap; /* Allow items to wrap to the next line */
   align-items: flex-start; /* Align children to the top */
   justify-content: flex-start; /* Align children to the left */
-  width: 400px; /* Adjust width as needed */
+  width: 37vw; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc; /* Just for visibility */
   padding: 10px; /* Reduced padding to just provide a small buffer around content */
@@ -88,19 +84,27 @@
   width: 100%; /* Take the full width of the parent */
 }
 .harmony-settings {
+  margin-top: 45px;
   margin-left: 20px;
 }
 
+.audio-settings {
+  background-color: lightslategrey;
+  padding: 2px 40px 38px 40px;
+  font-weight: bold;
+}
+
 .octave-settings {
-  background-color: lightskyblue;
-  padding: 0 70px 150px 80px;
+  /* background-color: lightskyblue; */
+  background-color: lightslategrey;
+  padding: 2px 40px 38px 40px;
   font-weight: bold;
 }
 
 
 .chord-note-settings {
   background-color: lightslategrey;
-  padding: 0 70px 150px 80px;
+  padding: 2px 40px 38px 40px;
   font-weight: bold;
 }
 
@@ -155,6 +159,11 @@
   flex-direction: column;
 }
 
+.audio-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 .harmony-type-buttons {
   display: flex;
   flex-direction: column;
@@ -167,4 +176,8 @@
 
 .melody-notes {
   margin-left: auto;
+}
+
+.functionality-buttons {
+  margin-right: 30px;
 }
